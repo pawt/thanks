@@ -2,4 +2,14 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-# Create your models here.
+class Employee(models.Model):
+	name = models.ForeignKey('auth.User')
+	team = models.CharField(max_length=200)
+	email = models.EmailField()
+	points_collected = models.IntegerField()
+	points_received = models.IntegerField()
+
+	def __str__(self):
+		return self.name
+
+	
