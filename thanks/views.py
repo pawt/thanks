@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from .models import Employee
 
 def mainpage(request):
-	return render(request, 'thanks/mainpage.html')
+	employees = Employee.objects.all().order_by('name')
+	return render(request, 'thanks/mainpage.html', {'employees': employees})
