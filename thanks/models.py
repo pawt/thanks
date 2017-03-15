@@ -4,10 +4,8 @@ from django.db import models
 
 class Employee(models.Model):
 	name = models.ForeignKey('auth.User')
-	team = models.CharField(max_length=200)
-	email = models.EmailField()
-	points_to_give = models.IntegerField()
-	points_received = models.IntegerField()
+	points_to_give = models.IntegerField(default=100)
+	points_collected = models.IntegerField(default=0)
 
 	def __str__(self):
 		return self.name.username
