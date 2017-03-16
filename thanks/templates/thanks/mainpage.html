@@ -34,9 +34,10 @@
 
   <body>
 
+  <div class="container">
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">  
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -47,33 +48,52 @@
           <a class="navbar-brand">Thanks!</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-          <li><a href="#">Home <span class="badge">2</span></a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Options <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-              </ul>
-            </li>
+          <ul class="nav navbar-nav navbar-left">
+	          <li class="active"><a href="#">Home <span class="badge">2</span></a></li>
+	            <li class="dropdown">
+	            	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Options <span class="caret"></span></a>
+	              	<ul class="dropdown-menu">
+	                	<li><a href="#">Action</a></li>
+	                	<li role="separator" class="divider"></li>
+	                	<li class="dropdown-header">Nav header</li>
+	                	<li><a href="#">Separated link</a></li>
+	              	</ul>
+	            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
             <li><a href="#contact">Profile</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="#contact">About</a></li>
+            <li><a href="#about">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
-      </div>
+       </div><!--/.container-fluid -->
     </nav>
 
-    <div class="container theme-showcase" role="main">
+    <div class="page-header">
+    	<h2>Dashboard</h2>
+    </div>
 
-     <div class="page-header">
-        <h1>Employees</h1>
-     </div>
-
-      <div class="row">
-        <div class="col-md-6">
+	<div class="row">
+	  <div class="col-md-6">
+		<form>
+		  <div class="form-group">
+		    <label for="exampleSelect1">Who do you want to thank?</label>
+		    <select class="form-control" id="exampleSelect1">
+		      <option>...</option>
+		      {% for employee in employees %}
+		      	<option>{{ employee }}</option>
+		      {% endfor %}
+		    </select>
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleTextarea">What's the reason?</label>
+		    <textarea class="form-control vresize" id="exampleTextarea" rows="3"></textarea>
+		  </div>
+		  <button type="submit" class="btn btn-primary">Send Thanks!</button>
+		</form>
+	  </div>
+ 
+      <div class="col-md-6">
           <table class="table">
             <thead>
               <tr>
@@ -94,5 +114,12 @@
           </table>
         </div>
       </div>
+
+
+	    <div class="page-header">
+	    	<h2>Livefeed</h2>
+	    </div>
+
+    </div>
   </body>
 </html>
