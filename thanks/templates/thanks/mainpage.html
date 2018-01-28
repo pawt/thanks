@@ -60,10 +60,10 @@
 
     <div class="row">
       <div class="col-md-6">
-        <form>
+        <form action="/give_points/" method="post">
           <div class="form-group">
             <label for="exampleSelect1">Who do you want to thank?</label>
-            <select class="form-control" id="exampleSelect1">
+            <select class="form-control" name="receiver" id="exampleSelect1">
   		      <option>...</option>
   		      {% for employee in employees %}
   		      	<option>{{ employee }}</option>
@@ -71,8 +71,12 @@
   		    </select>
           </div>
           <div class="form-group">
+            <label>How many points to you want to give?</label>
+            <input class="form-control" id="points" type="text" name="points" value="1">
+          </div>
+          <div class="form-group">
             <label for="exampleTextarea">What's the reason?</label>
-            <textarea class="form-control vresize" id="exampleTextarea" rows="3"></textarea>
+            <textarea class="form-control vresize" id="exampleTextarea" name="reason" rows="3"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Send Thanks!</button>
         </form>
@@ -97,6 +101,24 @@
             {% endfor %}
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <form action="/give_points/" method="post">
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+              {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+          <button type="submit" class="btn btn-primary">Send Thanks!</button>
+        </form>
       </div>
     </div>
 
