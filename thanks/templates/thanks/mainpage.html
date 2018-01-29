@@ -106,18 +106,34 @@
 
     <div class="row">
       <div class="col-md-6">
-        <form action="/give_points/" method="post">
-            {% csrf_token %}
-            {% for hidden in form.hidden_fields %}
-              {{ hidden }}
-            {% endfor %}
-
-            {% for field in form.visible_fields %}
-                {{ field.errors }}
-                {{ field.help_text }}
-                {{ field }}
-            {% endfor %}
-          <button type="submit" class="btn btn-primary">Send Thanks!</button>
+        <form action="/give_points/" class="form-horizontal" method="post">{% csrf_token %}
+          <fieldset>
+              <legend>{{ title }}</legend>
+              {% for field in form %}
+                  {% if field.errors %}
+                      <div class="control-group error">
+                          <label class="control-label">{{ field.label }}</label>
+                          <div class="controls">{{ field }}
+                              <span class="help-inline">
+                                  {% for error in  field.errors %}{{ error }}{% endfor %}
+                              </span>
+                          </div>
+                      </div>
+                  {% else %}
+                      <div class="control-group">
+                          <label class="control-label">{{ field.label }}</label>
+                          <div class="controls">{{ field }}
+                              {% if field.help_text %}
+                                  <p class="help-inline"><small>{{ field.help_text }}</small></p>
+                              {% endif %}
+                          </div>
+                      </div>
+                  {% endif %}
+              {% endfor %}
+          </fieldset>
+          <div class="form-actions">
+              <button type="submit" class="btn btn-primary" >Send Thanks!!</button>
+          </div>
         </form>
       </div>
     </div>
