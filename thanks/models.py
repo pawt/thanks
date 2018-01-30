@@ -16,7 +16,7 @@ class Transaction(models.Model):
     giver = models.ForeignKey('thanks.Employee', related_name = "giver")
     receiver = models.ForeignKey('thanks.Employee', related_name = "receiver")
     description = models.TextField(default='')
-    points_given = models.IntegerField(default=100)
+    points_given = models.IntegerField()
     date = models.DateTimeField(default=datetime.now,blank=True)
 
     def __str__(self):

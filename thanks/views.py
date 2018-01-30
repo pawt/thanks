@@ -9,7 +9,9 @@ from .forms	import TransactionForm
 
 def mainpage(request):
 	employees = Employee.objects.all().order_by('name')
-	return render(request, 'thanks/mainpage.html', {'employees': employees})
+	form = TransactionForm()
+
+	return render(request, 'thanks/mainpage.html', {'employees': employees, 'form': form})
 
 def login(request):
     _message = 'Please sign in'
