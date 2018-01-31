@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 from datetime import datetime
+from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 from django.db import models
 
@@ -16,7 +18,7 @@ class Transaction(models.Model):
     giver = models.ForeignKey('thanks.Employee', related_name = "giver")
     receiver = models.ForeignKey('thanks.Employee', related_name = "receiver")
     description = models.TextField(default='')
-    points_given = models.IntegerField()
+    points_given = models.IntegerField(default=1, choices=((1,1),(2,2),(3,3)))
     date = models.DateTimeField(default=datetime.now,blank=True)
 
     def __str__(self):
