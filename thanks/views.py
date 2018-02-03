@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from .models import Employee
+from .models import Employee, Transaction
 from django.contrib.auth import (login as auth_login,  authenticate)
 from django.contrib.auth import logout
-from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from .forms	import TransactionForm
@@ -40,12 +41,20 @@ def give_points(request):
 	if form.is_valid():
 		transaction = form.save(commit=False)
 		loggedUserId = request.user.id
-		testing = Employee.objects.get(name_id=loggedUserId)
-		transaction.giver = testing
+		giv = Employee.objects.get(name_id=loggedUserId)
+	#	testing = get_object_or_404(Employee, pk=loggedUserId)
+		transaction.giver = giv
 		transaction.save()
+
+	#	rec = User.objects.get(id=transaction.receiver_id)
+		rec2 = Employee.objects.get(id=transaction.receiver_id)
+		rec2.points_collected += transaction.points_given
+		giv.points_to_give -= transaction.points_given
+		rec2.save()
+		giv.save()
 
 		form = TransactionForm()
 		return mainpage(request)
 
-	args = {'form': form}
+	args = {'employees': employees, 'form': form}
 	return render(request, 'thanks/mainpage.html', args)

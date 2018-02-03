@@ -66,26 +66,6 @@
 
     <div class="row">
       <div class="col-md-6">
-        <!-- <form action="/give_points/" method="post">
-          <div class="form-group">
-            <label for="exampleSelect1">Who do you want to thank?</label>
-            <select class="form-control" name="receiver" id="exampleSelect1">
-  		      <option>...</option>
-  		      {% for employee in employees %}
-  		      	<option>{{ employee }}</option>
-  		      {% endfor %}
-  		    </select>
-          </div>
-          <div class="form-group">
-            <label>How many points to you want to give?</label>
-            <input class="form-control" id="points" type="text" name="points" value="1">
-          </div>
-          <div class="form-group">
-            <label for="exampleTextarea">What's the reason?</label>
-            <textarea class="form-control vresize" id="exampleTextarea" name="reason" rows="3"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Send Thanks!</button>
-        </form> -->
         <form action="/give_points/" class="form" method="post">
             {% csrf_token %}
             {% bootstrap_form form %}

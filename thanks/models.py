@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 from django.db import models
+from django.db.models.query import QuerySet
 
 class Employee(models.Model):
     name = models.ForeignKey('auth.User')
@@ -22,7 +23,7 @@ class Transaction(models.Model):
     date = models.DateTimeField(default=datetime.now,blank=True)
 
     def __str__(self):
-        return "Transaction #" + str(self.id) + str(self.giver) + " -> " + str(self.receiver)
+        return "Transaction #" + str(self.id) + " " + str(self.giver) + " -> " + str(self.receiver)
 
     def make(self):
         self.date = timezone.now()
