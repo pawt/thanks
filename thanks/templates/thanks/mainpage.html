@@ -1,6 +1,4 @@
-{% extends 'base.html' %}
-{
-{% load bootstrap3 %}
+{% extends 'base.html' %} { {% load bootstrap3 %}
 
 
 
@@ -14,9 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <meta name="description" content="">
-  <meta name="author" content="">
-  {% bootstrap_css %}
-  {% bootstrap_javascript %}
+  <meta name="author" content=""> {% bootstrap_css %} {% bootstrap_javascript %}
   <title>Thanks!</title>
   {% endblock %}
 </head>
@@ -39,15 +35,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-left">
             <li class="active"><a href="/home/">Home <span class="badge">2</span></a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Options <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-              </ul>
-            </li>
+            <li class="dropdown"><a href="#">Options</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Profile ({{user.username}})</a></li>
@@ -67,14 +55,9 @@
     <div class="row">
       <div class="col-md-6">
         <form action="/give_points/" class="form" method="post">
-            {% csrf_token %}
-            {% bootstrap_form form %}
-            {% buttons %}
-              <button type="submit" class="btn btn-primary">Send Thanks!</button>
-            {% endbuttons %}
+          {% csrf_token %} {% bootstrap_form form %} {% buttons %}
+          <button type="submit" class="btn btn-primary">Send Thanks!</button> {% endbuttons %}
         </form>
-
-
       </div>
 
       <div class="col-md-6">
@@ -99,10 +82,25 @@
       </div>
     </div>
 
-    <div class="page-header">
-      <h2>Livefeed</h2>
-    </div>
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        <div class="page-header">
+          <h2>Livefeed</h2>
+        </div>
+          <div class="livefeed-container">
+          {% for transaction in transactions %}
+            <div class="transaction-container">
+              <div class="transaction-header">
+                <div class="transaction-title"<h4>{{ transaction.giver }} gives {{ transaction.receiver }} {{ transaction.points_given }} point(s)</h4></div>
+                <div class="transaction-date">{{ transaction.date|date:'d-m-Y H:i' }}</div>
+              </div>
+              <div class="transaction-description">{{ transaction.description }}</div>
+            </div>
+          {% endfor %}
+          </div>
 
+      </div>
+    </div>
   </div>
   {% endblock %}
 </body>

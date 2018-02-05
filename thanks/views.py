@@ -10,9 +10,10 @@ from .forms	import TransactionForm
 
 def mainpage(request):
 	employees = Employee.objects.all().order_by('name')
+	transactions = Transaction.objects.all().order_by('-date')
 	form = TransactionForm()
 
-	return render(request, 'thanks/mainpage.html', {'employees': employees, 'form': form})
+	return render(request, 'thanks/mainpage.html', {'employees': employees, 'transactions': transactions, 'form': form})
 
 def login(request):
     _message = 'Please sign in'
@@ -56,5 +57,5 @@ def give_points(request):
 		form = TransactionForm()
 		return mainpage(request)
 
-	args = {'employees': employees, 'form': form}
+	args = {'employees': employees,  'transactions': transactions, 'form': form}
 	return render(request, 'thanks/mainpage.html', args)

@@ -1,4 +1,7 @@
-body { padding-top: 20px; padding-bottom: 20px; }
+body {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
 
 /* navbar */
 
@@ -78,5 +81,38 @@ body { padding-top: 20px; padding-bottom: 20px; }
 /* vertical-resize only text area */
 
 .vresize {
-  resize: vertical; 
+  resize: vertical;
+}
+
+
+/* transaction-related css */
+
+.livefeed-container {
+
+}
+
+.transaction-container {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 10px;
+	background-color: #f7f7f9;
+}
+
+
+.transaction-header {
+	line-height: 2;
+}
+
+.transaction-title {
+	display: inline-block;
+	font-weight: bold;
+}
+
+.transaction-date {
+	float: right;
+	color: #818a91;
+}
+
+.transaction-description {
+
 }
