@@ -12,6 +12,7 @@ def mainpage(request):
 	employees = Employee.objects.all().order_by('name')
 	transactions = Transaction.objects.all().order_by('-date')
 	form = TransactionForm()
+	form.fields["receiver"].queryset = Employee.objects.exclude(name_id=request.user.id)
 
 	return render(request, 'thanks/mainpage.html', {'employees': employees, 'transactions': transactions, 'form': form})
 
@@ -43,11 +44,10 @@ def give_points(request):
 		transaction = form.save(commit=False)
 		loggedUserId = request.user.id
 		giv = Employee.objects.get(name_id=loggedUserId)
-	#	testing = get_object_or_404(Employee, pk=loggedUserId)
+
 		transaction.giver = giv
 		transaction.save()
 
-	#	rec = User.objects.get(id=transaction.receiver_id)
 		rec2 = Employee.objects.get(id=transaction.receiver_id)
 		rec2.points_collected += transaction.points_given
 		giv.points_to_give -= transaction.points_given
