@@ -9,10 +9,10 @@ from django.core.urlresolvers import reverse
 from .forms	import TransactionForm
 
 def mainpage(request):
-	employees = Employee.objects.all().order_by('name')
+	employees = Employee.objects.all().order_by('user')
 	transactions = Transaction.objects.all().order_by('-date')
 	form = TransactionForm()
-	form.fields["receiver"].queryset = Employee.objects.exclude(name_id=request.user.id)
+	form.fields["receiver"].queryset = Employee.objects.exclude(user_id=request.user.id)
 
 	return render(request, 'thanks/mainpage.html', {'employees': employees, 'transactions': transactions, 'form': form})
 
@@ -43,7 +43,7 @@ def give_points(request):
 	if form.is_valid():
 		transaction = form.save(commit=False)
 		loggedUserId = request.user.id
-		giv = Employee.objects.get(name_id=loggedUserId)
+		giv = Employee.objects.get(user_id=loggedUserId)
 
 		transaction.giver = giv
 		transaction.save()
