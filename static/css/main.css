@@ -88,7 +88,6 @@ body {
 /* transaction-related css */
 
 .livefeed-container {
-
 }
 
 .transaction-container {
@@ -114,5 +113,17 @@ body {
 }
 
 .transaction-description {
+}
+
+
+#id_description {
+	resize: none;
+}
+
+#chars_counter {
+	text-align: right;
+	text-size: 8px;
+	color: grey;
+	margin-top: -10px;
 
 }

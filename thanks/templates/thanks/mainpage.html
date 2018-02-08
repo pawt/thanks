@@ -1,5 +1,6 @@
-{% extends 'base.html' %} { {% load bootstrap3 %}
-
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load static %}
 
 
 <!DOCTYPE html>
@@ -7,13 +8,11 @@
 
 <head>
   {% block head %}
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <meta name="description" content="">
-  <meta name="author" content=""> {% bootstrap_css %} {% bootstrap_javascript %}
-  <title>Thanks!</title>
+
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <title>Home Page</title>
+  <script src="{% static '/js/counter.js' %}"></script>
   {% endblock %}
 </head>
 
@@ -55,7 +54,12 @@
     <div class="row">
       <div class="col-md-6">
         <form action="/give_points/" class="form" method="post">
-          {% csrf_token %} {% bootstrap_form form %} {% buttons %}
+          {% csrf_token %}
+          {% bootstrap_field form.receiver %}
+          {% bootstrap_field form.description %}
+          <div id="chars_counter"></div>
+          {% bootstrap_field form.points_given %}
+          {% buttons %}
           <button type="submit" class="btn btn-primary">Send Thanks!</button> {% endbuttons %}
         </form>
       </div>

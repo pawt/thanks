@@ -17,6 +17,6 @@ class TransactionForm(forms.ModelForm):
             'points_given': ('How many points do you want to give?'),
         }
         widgets = {
-            'description': forms.Textarea(attrs={'placeholder': 'Enter description here', 'rows': 3}),
+            'description': forms.Textarea(attrs={'placeholder': 'Enter description here', 'rows': 4, 'maxlength': 140 }),
             'points_given': forms.Select(attrs={'placeholder': 'Enter number of points (min. 1 / max. 3)'}),
         }
