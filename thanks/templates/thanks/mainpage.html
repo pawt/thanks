@@ -65,46 +65,47 @@
       </div>
 
       <div class="col-md-6">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Points to give</th>
-              <th>Points received</th>
-            </tr>
-          </thead>
-          {% for employee in employees %}
-          <tbody>
-            <tr>
-              <td>{{ employee }}</td>
-              <td>{{ employee.points_to_give }}</td>
-              <td>{{ employee.points_collected}}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Points to give</th>
+            <th>Points received</th>
+          </tr>
+        </thead>
+        {% for employee in employees %}
+        <tbody>
+          <tr>
+            <td>{{ employee }}</td>
+            <td>{{ employee.points_to_give }}</td>
+            <td>{{ employee.points_collected}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
       </div>
+
     </div>
 
     <div class="row">
-      <div class="col-md-offset-2 col-md-8">
+      <div class="col-md-offset-3 col-md-6">
         <div class="page-header">
           <h2>Livefeed</h2>
         </div>
-          <div class="livefeed-container">
-          {% for transaction in transactions %}
-            <div class="transaction-container">
-              <div class="transaction-header">
-                <div class="transaction-title"<h4>{{ transaction.giver }} gives {{ transaction.receiver }} {{ transaction.points_given }} point(s)</h4></div>
-                <div class="transaction-date">{{ transaction.date|date:'d-m-Y H:i' }}</div>
+         <div class="livefeed-container">
+            {% for transaction in transactions %}
+              <div class="transaction-container">
+                <div class="transaction-header">
+                  <div class="transaction-title">{{ transaction.giver }} gives {{ transaction.receiver }} {{ transaction.points_given }} point(s)</div>
+                  <div class="transaction-date">{{ transaction.date|date:'d-m-Y H:i' }}</div>
+                </div>
+                <div class="transaction-description">{{ transaction.description }}</div>
               </div>
-              <div class="transaction-description">{{ transaction.description }}</div>
-            </div>
-          {% endfor %}
+            {% endfor %}
           </div>
-
-      </div>
+        </div>
     </div>
+
   </div>
   {% endblock %}
 </body>
