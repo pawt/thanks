@@ -10,11 +10,12 @@ from .forms	import TransactionForm
 
 def mainpage(request):
 	employees = Employee.objects.all().order_by('user')
+	collected_points = Employee.objects.get(user_id=request.user.id).points_collected
 	transactions = Transaction.objects.all().order_by('-date')
 	form = TransactionForm()
 	form.fields["receiver"].queryset = Employee.objects.exclude(user_id=request.user.id)
 
-	return render(request, 'thanks/mainpage.html', {'employees': employees, 'transactions': transactions, 'form': form})
+	return render(request, 'thanks/mainpage.html', {'employees': employees, 'transactions': transactions, 'form': form, 'collected_points': collected_points})
 
 def login(request):
     _message = 'Please sign in'

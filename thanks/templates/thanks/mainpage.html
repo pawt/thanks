@@ -38,7 +38,7 @@
             <li class="dropdown"><a href="#">Options</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><i class="fa fa-user" style="margin-right:5px"></i>{{user.first_name}} {{user.last_name}} <span class="badge">2</span></a></li>
+            <li><a href="#"><i class="fa fa-user" style="margin-right:5px"></i>{{user.first_name}} {{user.last_name}} <span class="badge" style="margin-bottom:4px;">{{ collected_points }}</span></a></li>
             <li><a href="{% url 'accounts:logout' %}"><i class="fa fas fa-sign-out-alt" style="margin-right:5px"></i>Logout</a></li>
           </ul>
         </div>
@@ -78,7 +78,7 @@
           <tr>
             <td>{{ employee }}</td>
             <td>{{ employee.points_to_give }}</td>
-            <td>{{ employee.points_collected}}</td>
+            <td>{{ employee.points_collected }}</td>
           </tr>
           {% endfor %}
         </tbody>
