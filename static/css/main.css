@@ -91,12 +91,10 @@ body {
 }
 
 .transaction-container {
-	margin-top: 5px;
-	margin-bottom: 5px;
+	margin-top: 13px;
 	padding: 10px;
 	background-color: #f7f7f9;
 }
-
 
 .transaction-header {
 	line-height: 2;
@@ -113,6 +111,8 @@ body {
 }
 
 .transaction-description {
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 
